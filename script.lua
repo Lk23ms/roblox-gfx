@@ -1,49 +1,50 @@
--- GFX OPTIMIZER SCRIPT--
-local Lighting = game:GetService("Lighting")
-local Players = game:GetService("Player")
-local RunService = game:GetService("Runservice")
-local player = Player.LocalPlayer
+-- GFX Optimizer Script cho Roblox
+-- Bo may la dan 36
 
--- Tạo gui --
-local gui = Instance.new("Screengui")
-gui.name = "GFXOptimizer"
-gui.ResetOnSpawn = false 
+local Lighting = game:GetService("Lighting")
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local player = Players.LocalPlayer
+
+-- Tạo GUI
+local gui = Instance.new("ScreenGui")
+gui.Name = "GFXOptimizer"
+gui.ResetOnSpawn = false
 gui.Parent = player.PlayerGui
 
-local frame = Instance.new('Frame")
+local frame = Instance.new("Frame")
 frame.Size = UDim2.new(0, 200, 0, 160)
 frame.Position = UDim2.new(1, -220, 0, 60)
-frame.BackgroundColor3 = Color.fromRGB(30, 19, 50)
-frame.BodersizePixel = 0 
-frame.Parent = gui 
+frame.BackgroundColor3 = Color3.fromRGB(30, 19, 50)
+frame.BorderSizePixel = 0
+frame.Parent = gui
 
 local corner = Instance.new("UICorner")
 corner.CornerRadius = UDim.new(0, 12)
 corner.Parent = frame
 
-    -- ham tao toggle button 
-local function makeToggle(text, yPos, defaultOn, callback )
-        local label = Instance.new("TextLabel")
-        label.Text = text 
-        label.Position = UDim2.new(0, 12, 0, yPos)
-        label.Size = UDim2.new(0.6, 0, 0, 28)
-        label.TextColor3 = Color3.fromRGB(220, 210, 240)
-        label.BackgroundTransparency = 1
-        label.TextXAlignment = Enum.TextXAlignment.Left
-        label.Font = Enum.Font.GothamMedium
-        label.TextSize = 13
-        label.Parent = frame
+-- Hàm tạo toggle button
+local function makeToggle(text, yPos, defaultOn, callback)
+    local label = Instance.new("TextLabel")
+    label.Text = text
+    label.Position = UDim2.new(0, 12, 0, yPos)
+    label.Size = UDim2.new(0.6, 0, 0, 28)
+    label.TextColor3 = Color3.fromRGB(220, 210, 240)
+    label.BackgroundTransparency = 1
+    label.TextXAlignment = Enum.TextXAlignment.Left
+    label.Font = Enum.Font.GothamMedium
+    label.TextSize = 13
+    label.Parent = frame
 
-        local btn = Instance.new("TextButton")
-        btn.Size = UDim2.new(0, 42, 0, 22)
-        btn.Position = UDimm2.new
-        btn.Position = UDim2.new(1, -54, 0, yPos + 3)
-        btn.BackgroundColor3 = defaultOn
-            and Color3.fromRGB(124, 58, 237)
-            or Color3.fromRGB(58, 45, 90)
-        btn.Text = ""
-        btn.Parent = frame
-        Instance.new("UICorner", btn).CornerRadius = UDim.new(1, 0)
+    local btn = Instance.new("TextButton")
+    btn.Size = UDim2.new(0, 42, 0, 22)
+    btn.Position = UDim2.new(1, -54, 0, yPos + 3)
+    btn.BackgroundColor3 = defaultOn
+        and Color3.fromRGB(124, 58, 237)
+        or Color3.fromRGB(58, 45, 90)
+    btn.Text = ""
+    btn.Parent = frame
+    Instance.new("UICorner", btn).CornerRadius = UDim.new(1, 0)
 
     local on = defaultOn
     btn.MouseButton1Click:Connect(function()
@@ -54,7 +55,8 @@ local function makeToggle(text, yPos, defaultOn, callback )
         callback(on)
     end)
 end
-    -- Low GFX
+
+-- Low GFX
 makeToggle("Low GFX", 35, true, function(on)
     settings().Rendering.QualityLevel = on
         and Enum.QualityLevel.Level01
@@ -86,6 +88,3 @@ title.TextSize = 14
 title.Parent = frame
 
 print("[GFX Optimizer] Loaded!")
-        
-        
-        
